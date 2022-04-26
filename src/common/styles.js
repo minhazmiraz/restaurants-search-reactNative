@@ -1,6 +1,6 @@
 export const elevation = {
-	elevation: 3,
-	borderColor: "#0001",
+	elevation: 1,
+	borderColor: "rgba(0, 0, 0, 0.01)",
 	borderBottomWidth: 5,
 	borderRightWidth: 5,
 };
