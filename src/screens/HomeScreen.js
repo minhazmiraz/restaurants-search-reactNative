@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { View } from "react-native";
 import { categoryItemsData } from "../assets/data/categoryItemsData";
 import Categories from "../components/Categories";

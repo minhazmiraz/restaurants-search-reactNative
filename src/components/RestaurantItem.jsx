@@ -1,18 +1,25 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { withNavigation } from "react-navigation";
 import { elevation } from "../common/styles";
+import { FontAwesome } from "@expo/vector-icons";
 
-const RestaurantItem = ({ restaurant }) => {
+const RestaurantItem = ({ restaurant, navigation }) => {
 	return (
-		<View style={[styles.container, styles.elevation]}>
-			<Image style={styles.image} source={{ uri: restaurant.image_url }} />
-			<View style={styles.infoContainer}>
-				<Text style={styles.header}>{restaurant.name}</Text>
-				<View style={styles.info}>
-					<Text style={styles.rating}>{restaurant.rating}</Text>
-					<Text style={styles.price}>{restaurant.price}</Text>
+		<TouchableOpacity onPress={() => navigation.navigate("Restaurant", { id: restaurant.id })}>
+			<View style={[styles.container, styles.elevation]}>
+				<Image style={styles.image} source={{ uri: restaurant.image_url }} />
+				<View style={styles.infoContainer}>
+					<Text style={styles.header}>{restaurant.name}</Text>
+					<View style={styles.info}>
+						<View style={styles.rating}>
+							<Text style={{ marginRight: 5 }}>{restaurant.rating}</Text>
+							<FontAwesome name="star" size={10} />
+						</View>
+						<Text style={styles.price}>{restaurant.price}</Text>
+					</View>
 				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
@@ -46,11 +53,13 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	rating: {
+		flexDirection: "row",
 		marginRight: 20,
 	},
 	price: {
+		flexDirection: "row",
 		color: "orange",
 	},
 });
 
-export default RestaurantItem;
+export default withNavigation(RestaurantItem);
